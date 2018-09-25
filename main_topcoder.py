@@ -31,10 +31,11 @@ from logger import Logger
 parser = argparse.ArgumentParser()
 #parser.add_argument('--root_dir', type=str,default='/Users/comjia/Downloads/code/pytorch_seq2seq/pytorch_seq2seq',help='??aishell????????path')
 parser.add_argument("--mode", type=str, default='train',help="train | dev | test")
-parser.add_argument("--audio_path", type=str, default="/movie/audio/topcoder/topcoder_test/fnn0slj2jrf.mp3",help="prepredicted audio path")
+parser.add_argument("--datalist_path", type=str, default="/movie/audio/topcoder",help="声谱图列表文件所在路径")
 parser.add_argument("--use_gpu", type=int, default=0,help="use gpu = 1; ")
 parser.add_argument("--use_pretrained", type=int, default=0,help="use_pretrained = 1; ")
 parser.add_argument("--model_path", type=str, default="checkpoint/spoken_Lang_id_topcoder",help="model path ")
+parser.add_argument("--img_path", type=str, default="",help="用于预测的声谱图路径 ")
 
 opt = parser.parse_args()
 print opt
@@ -250,7 +251,6 @@ if __name__ == '__main__':
     logger_train = Logger('./log_topcoder/logs_train')
     logger_dev = Logger('./log_topcoder/logs_dev')
     net = Network_CNN_RNN(rnn_input_size = rnn_input_size,rnn_hidden_size = rnn_hidden_size,rnn_num_layers = rnn_num_layers,use_gpu=use_gpu)
-    # net = Network_RNN(rnn_input_size = 256,rnn_hidden_size = rnn_hidden_size,rnn_num_layers = rnn_num_layers,use_gpu=use_gpu)
     print net
     params = list(net.parameters())
     k = 0
@@ -267,14 +267,14 @@ if __name__ == '__main__':
 
 
     training_msg = 'time_{}_epoch_{:2d}_step_{:3d}_TrLoss_{:.4f}_acc_{:.4f}'
-    imgdata_train = batch_gen_imgdata(data_listfile="/movie/audio/topcoder/trainEqual.csv")
+    imgdata_train = batch_gen_imgdata(data_listfile=os.path.join(opt.datalist_path,"trainEqual.csv"))
     train_set = torch.utils.data.DataLoader(imgdata_train,
                                               batch_size=64,
                                               shuffle=True,
                                               num_workers=1,
                                               collate_fn=imgdata_train.collate_fn)
 
-    imgdata_test = batch_gen_imgdata(data_listfile="/movie/audio/topcoder/valEqaul.csv")
+    imgdata_test = batch_gen_imgdata(data_listfile=os.path.join(opt.datalist_path,"valEqaul.csv"))
     test_set = torch.utils.data.DataLoader(imgdata_test,
                                               batch_size=64,
                                               shuffle=False,

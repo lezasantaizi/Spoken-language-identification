@@ -22,10 +22,10 @@
 ## 运行
 trainEqual.csv格式如下：
 >
-/movie/audio/topcoder/topcoder_train_png_8k/000w3fewuqj.png,57
-/movie/audio/topcoder/topcoder_train_png_8k/000ylhu4sxl.png,55
-/movie/audio/topcoder/topcoder_train_png_8k/0014x3zvjrl.png,155
-/movie/audio/topcoder/topcoder_train_png_8k/001xjmtk2wx.png,148
-/movie/audio/topcoder/topcoder_train_png_8k/002hrjhbsnk.png,110
+/movie/audio/topcoder/topcoder_train_png/000w3fewuqj.png,57
+/movie/audio/topcoder/topcoder_train_png/000ylhu4sxl.png,55
+/movie/audio/topcoder/topcoder_train_png/0014x3zvjrl.png,155
+/movie/audio/topcoder/topcoder_train_png/001xjmtk2wx.png,148
+/movie/audio/topcoder/topcoder_train_png/002hrjhbsnk.png,110
 
 python -u main_topcoder.py --mode=train --datalist_path=/movie/audio/topcoder --use_gpu=1 --use_pretrained=0

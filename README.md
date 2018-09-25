@@ -16,7 +16,9 @@
 
 ## tips：
 1.每个epoch计算dev集合的acc，根据dev的acc结果保存model
+
 2.使用tensorboard可视化训练集的loss和acc，测试集的acc
+
 3.rnn_input_size 的大小需要提前设定好，当声谱图大小有修改或者conv有变动时，该值也需要修改
 
 ## 运行

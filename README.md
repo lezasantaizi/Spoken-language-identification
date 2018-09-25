@@ -2,6 +2,16 @@
 方言分类，pytorch
 参考的是[topcoder比赛](http://yerevann.github.io/2016/06/26/combining-cnn-and-rnn-for-spoken-language-identification/)的结果
 
+见[知乎](https://zhuanlan.zhihu.com/p/45104360)
+
+## topcoder 原始语音数据
+[Training Data Files]( http://www.topcoder.com/contest/problem/SpokenLanguages2/trainingdata.zip)
+
+[Testing Data Files]( http://www.topcoder.com/contest/problem/SpokenLanguages2/testingdata.zip)
+
+[Training Dataset List]( http://www.topcoder.com/contest/problem/SpokenLanguages2/trainingData.csv)
+
+[Testing Dataset List]( http://www.topcoder.com/contest/problem/SpokenLanguages2/testingData.csv)
 ## 函数介绍：
 
 1. create_spectrograms.py 该函数将语音转成声谱图

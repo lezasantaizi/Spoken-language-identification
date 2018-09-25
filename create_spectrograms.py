@@ -9,7 +9,7 @@ import glob
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_dir", type=str, default='/movie/audio/topcoder/topcoder_train',help="")
-parser.add_argument("--save_img_dir", type=str, default="/movie/audio/topcoder/topcoder_train_png_8k",help="")
+parser.add_argument("--save_img_dir", type=str, default="/movie/audio/topcoder/topcoder_train_png",help="")
 parser.add_argument("--audio_type", type=str, default="mp3",help="audio type")
 
 opt = parser.parse_args()
@@ -104,18 +104,18 @@ def create_spec(input_dir,save_img_dir,audio_type):
             # filename = "_".join(file_split)
             if audio_type == "mp3":
                 wavfile = os.path.join(input_dir,filename + '.wav')
-                os.system('ffmpeg -i ' + line +" -ar 8000 tmp.wav" )
-                os.system("ffmpeg -i tmp.wav -ar 8000 tmp.mp3" )
-                os.system("ffmpeg -i tmp.mp3 -ar 8000 -ac 1 "+wavfile )
-                # os.system('ffmpeg -i ' + line +" " + wavfile)
+                #os.system('ffmpeg -i ' + line +" -ar 8000 tmp.wav" )
+                #os.system("ffmpeg -i tmp.wav -ar 8000 tmp.mp3" )
+                #os.system("ffmpeg -i tmp.mp3 -ar 8000 -ac 1 "+wavfile )
+                os.system('ffmpeg -i ' + line +" " + wavfile)
 
                 # we create only one spectrogram for each speach sample
                 # we don't do vocal tract length perturbation (alpha=1.0)
                 # also we don't crop 9s part from the speech
                 plotstft(wavfile, channel=0, name=os.path.join(save_img_dir,filename+'.png'), alpha=1.0)
                 os.remove(wavfile)
-                os.remove("tmp.mp3")
-                os.remove("tmp.wav")
+                #os.remove("tmp.mp3")
+                #os.remove("tmp.wav")
             elif audio_type == "wav":
                 plotstft(line, channel=0, name=os.path.join(save_img_dir, filename + '_1.png'), alpha=1.0)
             print "processed %d files" % (iter + 1)
